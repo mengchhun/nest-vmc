@@ -18,8 +18,9 @@ export class ProductsController {
         @Body('title') prodTitle: string,
         @Body('description') prodDesc: string,
         @Body('price') prodPrice: number,
+        @Body('soldout') prodSoldeOut: boolean,
     ) {
-        const generatedId = await this.productsService.insertProduct(prodTitle, prodDesc, prodPrice);
+        const generatedId = await this.productsService.insertProduct(prodTitle, prodDesc, prodPrice,prodSoldeOut);
         return {id: generatedId};
     }
 
@@ -40,8 +41,9 @@ export class ProductsController {
         @Body('title') prodTitle: string,
         @Body('description') prodDesc: string,
         @Body('price') prodPrice: number,
+        @Body('soldout') prodSoldeOut: boolean,
     ) {
-        await this.productsService.updateProductById(prodId, prodTitle, prodDesc, prodPrice);
+        await this.productsService.updateProductById(prodId, prodTitle, prodDesc, prodPrice,prodSoldeOut);
         return null;
     }
 

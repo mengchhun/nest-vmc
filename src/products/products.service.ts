@@ -7,12 +7,13 @@ import { Product } from "./product.model";
 export class ProductsService{
     constructor(@InjectModel('Product') private readonly productModel: Model<Product>) {}
 
-    async insertProduct(title: string, desc: string, price: number) {
+    async insertProduct(title: string, desc: string, price: number, soldout: boolean) {
         const newProduct = new this.productModel(
             {
                 title,
                 description: desc,
-                price
+                price,
+                soldout
             });
         
         const result = await newProduct.save();
@@ -25,7 +26,8 @@ export class ProductsService{
                 id: x.id,
                 title: x.title,
                 description: x.description,
-                price: x.price
+                price: x.price,
+                soldout: x.soldout
             }));
     }
 
@@ -35,11 +37,12 @@ export class ProductsService{
             id: product.id,
             title: product.title,
             description: product.description,
-            price: product.price
+            price: product.price,
+            soldout: product.soldout
         };
     }
 
-    async updateProductById(id : string, title: string, desc: string, price: number){
+    async updateProductById(id : string, title: string, desc: string, price: number, soldout: boolean){
         const updatedProduct = await this.findProduct(id);
         if(title){
             updatedProduct.title = title;
@@ -49,6 +52,9 @@ export class ProductsService{
         }
         if(price){
             updatedProduct.price = price;
+        }
+        if(soldout){
+            updatedProduct.soldout = soldout;
         }
         updatedProduct.save();
     }
