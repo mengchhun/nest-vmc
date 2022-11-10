@@ -54,9 +54,10 @@ export class ProductsService{
         if(price){
             updatedProduct.price = price;
         }
-        if(soldout){
+        if(soldout !== undefined){
             updatedProduct.soldout = soldout;
         }
+
         updatedProduct.save();
         return {
             id: updatedProduct.id,
