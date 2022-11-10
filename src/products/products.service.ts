@@ -58,6 +58,13 @@ export class ProductsService{
             updatedProduct.soldout = soldout;
         }
         updatedProduct.save();
+        return {
+            id: updatedProduct.id,
+            title: updatedProduct.title,
+            description: updatedProduct.description,
+            price: updatedProduct.price,
+            soldout: updatedProduct.soldout
+        };
     }
 
     async deleteProductById(id: string){

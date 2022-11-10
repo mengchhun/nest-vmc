@@ -46,8 +46,8 @@ export class ProductsController {
         @Body('price') prodPrice: number,
         @Body('soldout') prodSoldeOut: boolean,
     ) {
-        await this.productsService.updateProductById(prodId, prodTitle, prodDesc, prodPrice,prodSoldeOut);
-        return null;
+        const updProduct = await this.productsService.updateProductById(prodId, prodTitle, prodDesc, prodPrice, prodSoldeOut);
+        return updProduct;
     }
 
     @Delete(':id')
