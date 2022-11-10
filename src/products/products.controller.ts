@@ -20,8 +20,11 @@ export class ProductsController {
         @Body('price') prodPrice: number,
         @Body('soldout') prodSoldeOut: boolean,
     ) {
-        const generatedId = await this.productsService.insertProduct(prodTitle, prodDesc, prodPrice,prodSoldeOut);
-        return {id: generatedId};
+        const newProduct = await this.productsService.insertProduct(prodTitle, prodDesc, prodPrice,prodSoldeOut);
+        return {newProduct};
+
+        // const generatedId = await this.productsService.insertProduct(prodTitle, prodDesc, prodPrice,prodSoldeOut);
+        // return {id: generatedId};
     }
 
     @Get()
